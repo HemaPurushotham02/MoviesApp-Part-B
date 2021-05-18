@@ -1,0 +1,33 @@
+.header{
+    position: relative;
+    background-color: #222;
+    height: 36px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-right: 32px;
+    padding-left: 16px;
+}
+
+#image{
+    background-color: #ff7f7f;
+    height: 35px;
+    /* width: 50px; */
+    animation: rotation 8s infinite linear;
+} 
+
+  @keyframes rotation {
+    /* from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(359deg);
+    } */
+    0% {
+      transform: scaleX(1);
+    }
+  
+    100% {
+      transform: scaleX(-1);
+    }
+  }
