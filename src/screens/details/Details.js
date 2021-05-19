@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import Header from '../../common/header/Header';
-import moviesData from '../../common/moviesData';
+import moviesData from '../../assets/moviesData';
 import Typography from '@material-ui/core/Typography';
 import './Details.css';
-import Home from '../home/Home';
 import YouTube from 'react-youtube';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
-import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
+
 class Details extends Component {
     constructor() {
         super();
@@ -46,13 +45,11 @@ class Details extends Component {
     componentWillMount() {
         let currentState = this.state;
         currentState.movie = moviesData.filter((mov) => {
-            return mov.id === this.props.movieId
+            return mov.id === this.props.match.params.id
         })[0];
         this.setState({ currentState });
     }
-    backToHomeHandler = () => {
-        ReactDOM.render(<Home />, document.getElementById('root'));
-    }
+
     artistClickHandler = (url) => {
         window.location = url;
     }
@@ -81,11 +78,10 @@ class Details extends Component {
         }
         return (
             <div className="details">
-                <Header /> 
-                <Button variant="contained" color="primary" style={{float:"right", position:"absolute" ,right:130,top:7}} > BOOK SHOW <i class="fa fa-share" aria-hidden="true"></i>  </Button> 
+                <Header id={this.props.match.params.id} showBookShowButton="true" />
                 <div className="back">
-                    <Typography onClick={this.backToHomeHandler}>
-                        &#60; Back to Home
+                    <Typography>
+                    <Link to="/">  &#60; Back to Home</Link>
                         </Typography>
                 </div>
                 <div className="flex-containerDetails">
